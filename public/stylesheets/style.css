@@ -1,5 +1,12 @@
+body{
+    background-color: #e0e0e0;
+   background: url("../images/smolwaves.webp");
+   background-size: cover;
+   font-family: 'Cinzel', serif;
+}
+
 nav{
-    background-color: #555555;
+    background-color: #C5D7D9;
      color: whitesmoke;
      font-size: xx-large;
 }
@@ -7,5 +14,65 @@ nav a{
     text-decoration: none;
     color: whitesmoke;
     font-size: xx-large;
+    
+}
+.icons{
+   font-size: 36px;
+   width: fit-content;
+    padding: 2rem;
+    text-decoration: none;
+    color: #bebebe;
+    
+}
 
+a:hover{
+    
+    color: whitesmoke !important;
+}
+.header{
+    margin-top: 5rem;
+}
+.main{
+    width: fit-content;
+     padding: 100px;
+    margin-top: 3rem;
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: inset -20px -20px 60px #bebebe,
+            inset 20px 20px 60px #ffffff; 
+}
+.glass{
+    width: fit-content;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+button{
+  
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 24px;
+    padding: 1rem;
+
+
+    
+    
+}
+button:hover{
+    background-color: #C5D7D9;
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+    
 }
