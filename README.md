@@ -36,7 +36,7 @@ mortgage loan calculator, try it out with your loan
 
 - N/A <br/>
 
-_Screenshots of page_
+## _Screenshots of page_
 ![](./public/images/homepagescrn.PNG)
 ![](./public/images/calculate.png)
 
