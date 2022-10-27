@@ -15,9 +15,7 @@ delay(1000).then(() => calcBtn.classList.remove('animate__animated', 'animate__p
 
 });
 calcBtn.addEventListener('click', function() {
-    console.log("loan" +loan.value)
-    console.log("interst2" +loan.value)
-    console.log("term" +term.value)
+    
     // check to see if the full form is filled out
  if(loan.value=="" | interst2.value=="" | term.value=="")
  {
