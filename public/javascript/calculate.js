@@ -2,6 +2,17 @@ const calcBtn =document.getElementById("submit");
 const Loan =document.getElementById("loan").value.trim();
 const interst=document.getElementById("interest").value.trim();
 const term=document.getElementById("term").value.trim();
+
+// on hover button
+calcBtn.addEventListener('mouseover', function(){
+    function delay(time) {
+    calcBtn.classList.add('animate__animated', 'animate__pulse');
+    return new Promise(resolve => setTimeout(resolve, time));
+
+}
+delay(1000).then(() => calcBtn.classList.remove('animate__animated', 'animate__pulse'));
+
+});
 calcBtn.addEventListener('click', function() {
     console.log("clicked");
  
