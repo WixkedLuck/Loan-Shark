@@ -1,5 +1,5 @@
 const calcBtn =document.getElementById("submit");
-const Loan =document.getElementById("loan");
+const Loan=document.getElementById("loan");
 const interst2=document.getElementById("interest");
 const term=document.getElementById("term");
 
@@ -15,6 +15,9 @@ delay(1000).then(() => calcBtn.classList.remove('animate__animated', 'animate__p
 
 });
 calcBtn.addEventListener('click', function() {
+    console.log("loan" +Loan.value)
+    console.log("interst2" +Loan.value)
+    console.log("term" +term.value)
     // check to see if the full form is filled out
  if(Loan.value=="" | interst2.value=="" | term.value=="")
  {
