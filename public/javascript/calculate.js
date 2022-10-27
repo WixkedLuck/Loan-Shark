@@ -1,5 +1,5 @@
 const calcBtn =document.getElementById("submit");
-const Loan=document.getElementById("loan");
+const loan=document.getElementById("loan");
 const interst2=document.getElementById("interest");
 const term=document.getElementById("term");
 
@@ -15,22 +15,22 @@ delay(1000).then(() => calcBtn.classList.remove('animate__animated', 'animate__p
 
 });
 calcBtn.addEventListener('click', function() {
-    console.log("loan" +Loan.value)
-    console.log("interst2" +Loan.value)
+    console.log("loan" +loan.value)
+    console.log("interst2" +loan.value)
     console.log("term" +term.value)
     // check to see if the full form is filled out
- if(Loan.value=="" | interst2.value=="" | term.value=="")
+ if(loan.value=="" | interst2.value=="" | term.value=="")
  {
     window.alert("Please fill out the complete form");
  }
  else{
 
-CalculateMortgage(Loan,interst2,term);
+CalculateMortgage(loan,interst2,term);
  }
 });
 
-function CalculateMortgage(Loan,interest2,term) {  
-    let principal = parseFloat(Loan.value);
+function CalculateMortgage(loan,interest2,term) {  
+    let principal = parseFloat(loan.value);
     let cInterest = parseFloat(interest2.value) / 100/ 12;
     let cPayments = parseFloat(term.value);
 
