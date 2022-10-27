@@ -111,3 +111,8 @@ form{
 .underline{
     border-bottom: 2px solid whitesmoke ;
 }
+
+td{
+    font-size: 24px;
+ 
+}
