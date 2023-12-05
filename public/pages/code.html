@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <script src="https://kit.fontawesome.com/ff0398e8e5.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/prism.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <img src="https://img.icons8.com/material-outlined/48/FFFFFF/shark.png"/>
+          <h1 class="navbar-brand animate__animated animate__bounce" href="#"> LoanShark</h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link " href="../../index.html"  >Home</a>
+              <a class="nav-link active" href="../LoanShark.html">The app</a>
+              <a class="nav-link onpage"  >Code</a>
+             
+            </div>
+            
+        
+            
+          </div>
+        </div>
+      </nav>
+<div class="row">
+    <div class="col" style="margin: auto; padding: 3rem;">
+      <pre class="line-numbers">
+        <code class="language-javascript" >
+            const calcBtn =document.getElementById("submit");
+            const loan=document.getElementById("loan");
+            const interst2=document.getElementById("interest");
+            const term=document.getElementById("term");
+            
+            // on hover button
+            calcBtn.addEventListener('mouseover', function(){
+                function delay(time) {
+                calcBtn.classList.add('animate__animated', 'animate__pulse');
+                return new Promise(resolve => setTimeout(resolve, time));
+            
+            }
+            // remove class after settime
+            delay(1000).then(() => calcBtn.classList.remove('animate__animated', 'animate__pulse'));
+            
+            });
+            calcBtn.addEventListener('click', function() {
+                
+                // check to see if the full form is filled out
+             if(loan.value=="" | interst2.value=="" | term.value=="")
+             {
+                window.alert("Please fill out the complete form");
+             }
+             else{
+            
+            CalculateMortgage(loan,interst2,term);
+             }
+            });
+            
+            function CalculateMortgage(loan,interest2,term) {  
+                let principal = parseFloat(loan.value);
+                let cInterest = parseFloat(interest2.value) / 100/ 12;
+                let cPayments = parseFloat(term.value);
+            
+                let x = Math.pow(1+cInterest, cPayments);
+                let monthly = (principal * x * cInterest)/(x-1);
+                let total_payments = (monthly * cPayments).toFixed(2);
+                let total_interest_sum = ((monthly * cPayments)-principal).toFixed(2);
+            
+                // define currency type
+                let formatCurrency = new Intl.NumberFormat(undefined, {
+                    style: 'currency',
+                    currency: 'USD'
+                });
+                let fmonthly = formatCurrency.format(monthly);
+                let fprincipal = formatCurrency.format(principal);
+                let ftotal_payments = formatCurrency.format(total_payments);
+                let ftotal_interest_sum = formatCurrency.format(total_interest_sum);
+                let info="";
+                // add info to table
+                info += "<table class='table table-striped bg-light table-sm'>";
+                
+                info += "<tr><th colspan='2' style='text-align:center;'><h2>"+fmonthly+"</h2></th></tr>";
+            
+                info += "<tr><td>Loan Amount:</td>";
+                info += "<td align='right'>"+fprincipal+"</td></tr>";
+            
+                info += "<tr><td>Total Payments:</td>";
+                info += "<td align='right'>"+ftotal_payments+"</td></tr>";
+            
+                info += "<tr><td>Total Interest Paid:</td>";
+                info += "<td align='right'>"+ftotal_interest_sum+"</td></tr>";
+            
+                info += "<tr><td>Payments:</td>";
+                info += "<td align='right'>"+cPayments+"</td></tr>";
+            
+                info += "</table>";
+            
+                // display info to html
+                document.getElementById("loan_info").innerHTML = info;
+            
+                // reset table
+                let table="";
+            
+                table += "<table class='table table-striped bg-light table-sm'>";
+            
+                    table += "<tr>";
+                    table += " <td width='30'><strong>Month</strong></td>";
+                    table += "<td width='30'><strong>Payment</strong></td>";
+                    table += "<td width='30'><strong>Principle</strong></td>";
+                    table += " <td width='30'><strong>Interest</strong></td>";
+                    table += "<td width='30'><strong>Interest Paid</strong></td>";
+                    table += "<td width='30'><strong>Balance</strong></td>";
+                    table += "</tr>";
+                // get input values
+                let current_balance = parseFloat(document.getElementById('loan').value);
+                let monthly_payment = monthly
+                // init counter
+                let payment_counter = 1;
+                let total_interest = parseFloat(cInterest);
+                while (payment_counter <= cPayments) {
+                    towards_interest = cInterest * current_balance;
+                    towards_balance = monthly_payment - towards_interest;
+                    total_interest = total_interest + towards_interest; 
+                    current_balance = current_balance - towards_balance;
+            
+                    let ftowards_interest = formatCurrency.format(towards_interest);
+                    let ftowards_balance = formatCurrency.format(towards_balance);
+                    let ftotal_interest = formatCurrency.format(total_interest);
+                    let fcurrent_balance = formatCurrency.format(current_balance);
+                    let fmonthly_payment = formatCurrency.format(monthly_payment);
+                    
+                    
+                    table += "<tr>";
+                        table += "<td>"+payment_counter+"</td>"
+                        table += "<td>"+fmonthly_payment+"</td>"
+                        table += "<td>"+ftowards_balance+"</td>"
+                        table += "<td>"+ftowards_interest+"</td>"
+                        table += "<td>"+ftotal_interest+"</td>"
+                        table += "<td>"+fcurrent_balance+"</td>"
+                    table += "</tr>";
+                    payment_counter++;
+             
+                }
+                table +="</table>";
+            
+                document.getElementById("Schedule").innerHTML = table;
+            }
+        </code>
+     </pre>
+</div>
+</div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="../javascript/prism.js"></script>
+</body>
